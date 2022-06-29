@@ -1,0 +1,6 @@
+.warp-chart{
+
+    display: flex !important;
+    flex: 1 !important;
+    height: 100vh !important;
+  }
