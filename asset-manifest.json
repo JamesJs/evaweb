@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/evaweb/static/css/main.073c9b0a.css",
-    "main.js": "/evaweb/static/js/main.481d3719.js",
+    "main.css": "/evaweb/static/css/main.d9fc70f5.css",
+    "main.js": "/evaweb/static/js/main.569091cf.js",
     "index.html": "/evaweb/index.html",
-    "main.073c9b0a.css.map": "/evaweb/static/css/main.073c9b0a.css.map",
-    "main.481d3719.js.map": "/evaweb/static/js/main.481d3719.js.map"
+    "main.d9fc70f5.css.map": "/evaweb/static/css/main.d9fc70f5.css.map",
+    "main.569091cf.js.map": "/evaweb/static/js/main.569091cf.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.481d3719.js"
+    "static/css/main.d9fc70f5.css",
+    "static/js/main.569091cf.js"
   ]
 }
