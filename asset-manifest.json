@@ -1,13 +1,16 @@
 {
   "files": {
-    "main.css": "/evaweb/static/css/main.d9fc70f5.css",
-    "main.js": "/evaweb/static/js/main.569091cf.js",
+    "main.css": "/evaweb/static/css/main.2b9fe66d.css",
+    "main.js": "/evaweb/static/js/main.1c16786c.js",
+    "static/media/hills_logo.png": "/evaweb/static/media/hills_logo.bcbf82728086c42eac1c.png",
+    "static/media/logo_branco.png": "/evaweb/static/media/logo_branco.cf94dc97f5f13a5ec8f2.png",
+    "static/media/gota.png": "/evaweb/static/media/gota.6b5161ecdffcd15a643b.png",
     "index.html": "/evaweb/index.html",
-    "main.d9fc70f5.css.map": "/evaweb/static/css/main.d9fc70f5.css.map",
-    "main.569091cf.js.map": "/evaweb/static/js/main.569091cf.js.map"
+    "main.2b9fe66d.css.map": "/evaweb/static/css/main.2b9fe66d.css.map",
+    "main.1c16786c.js.map": "/evaweb/static/js/main.1c16786c.js.map"
   },
   "entrypoints": [
-    "static/css/main.d9fc70f5.css",
-    "static/js/main.569091cf.js"
+    "static/css/main.2b9fe66d.css",
+    "static/js/main.1c16786c.js"
   ]
 }
