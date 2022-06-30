@@ -3,6 +3,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import { Avatar, ButtonBase, ListItem, Typography } from "@mui/material";
 import React, { PropsWithChildren } from "react";
 import "./styles.css"
+import Gota from "../../assets/gota.png"
 export default function CardLista(props: PropsWithChildren<any>) {
   return (
     <ButtonBase
@@ -11,9 +12,12 @@ export default function CardLista(props: PropsWithChildren<any>) {
       }}
     >
       <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Yemy Sharp" src="/static/images/avatar/1.jpg" />
+        <ListItemAvatar style={{display:"flex",alignItems:"center"}}>
+		<img alt="gota" src={Gota} style={{
+			width:40
+		}} />
         </ListItemAvatar>
+
         <ListItemText
           primary={props.data}
           secondary={

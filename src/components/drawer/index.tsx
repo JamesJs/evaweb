@@ -64,7 +64,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
+	display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
@@ -92,7 +92,7 @@ export default function PersistentDrawerLeft(
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+	      <Toolbar style={{backgroundColor:"black"}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -102,7 +102,7 @@ export default function PersistentDrawerLeft(
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography fontWeight={"bold"} variant="h6" noWrap component="div">
             EvaWeb
           </Typography>
           {isChart && (
@@ -112,7 +112,7 @@ export default function PersistentDrawerLeft(
                 textDecoration: "none",
                 marginLeft: "auto",
               }}
-              to={"/"}
+              to={"/destilacao"}
             >
               <ButtonBase>
                 <IconButton
@@ -155,22 +155,24 @@ export default function PersistentDrawerLeft(
         </DrawerHeader>
         <Divider />
         <List>
-          {["Home", "Destilações", "Sair"].map((text, index) => (
+	{
+
+		["Destilações", "Sair"].map((text, index) => (
             <ListItem
               onClick={
-                index === 2
+                index === 1
                   ? () => {
                       props.onExit && props.onExit();
                       navigation("/login");
                     }
-                  : index === 1
+                  : index === 0
                   ? () => {
                       navigation("/destilacao");
                     }
-                  : () => {
-                      navigation("/");
-                    }
-              }
+			    : ()=>{
+				console.log("home aqui")
+			    } 
+	      }
               key={text}
               disablePadding
             >

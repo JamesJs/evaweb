@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import Chart from "../pages/Chart";
 import Login from "../pages/Login";
 import Destilacao from "../pages/Destilacoes";
+import Footer from "../components/Footer";
 export default function RoutesComponent(){
     const [login, setLogin] = useState(false);
     function changeLogin() {
@@ -17,15 +18,19 @@ export default function RoutesComponent(){
     return(
         <BrowserRouter basename={process.env.PUBLIC_URL}>
         {login && (
-          <AppBar onExit={changeLogin}>
+	<>	
+	<AppBar onExit={changeLogin}>
             <Routes>
-              <Route path="/" element={<Home />} />
+	      {/*<Route path="/" element={<Home />} />
+		      */}
               <Route path="/destilacao" element={<Destilacao />} />
               <Route path="/chart" element={<Chart />} />
             </Routes>
           </AppBar>
-        )}
-        {!login && <Login onLogin={changeLogin} />}
+	<Footer/>
+</>
+	)}
+	{!login && <Login onLogin={changeLogin} />}
       </BrowserRouter>
     )
 }

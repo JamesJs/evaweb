@@ -1,10 +1,13 @@
 import React from "react";
-import Paper from "@mui/material/Paper";
 import { Box } from "@mui/system";
-import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router";
 import "./styles.css";
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton"
+import Logo from "../../assets/logo_branco.png"
+import HillsLogo from "../../assets/hills_logo.png"
 export default function Login({
   onLogin,
 }: {
@@ -13,15 +16,15 @@ export default function Login({
   const history = useNavigate();
   return (
     <Box
-      display={"flex"}
+    display={"flex"}
       className="login-warp"
-    >
-      <Paper
-        className="form-warp"
       >
-        <p className="title-form">
-          Login
-        </p>
+       <div style={{display:"flex",flex:1,maxWidth:400,maxHeight:300,justifyContent:"center"}}>
+	       <img className="logo" style={{
+		width:"100%",
+		height:"100%"
+	       }} alt="logo_branco" src={Logo}/>
+	</div>
         <div
           style={{
             flex: 1,
@@ -31,15 +34,49 @@ export default function Login({
             alignItems: "center",
           }}
         >
-          <TextField id="standard-basic" label="Usuário" variant="standard" />
-          <TextField id="standard-basic" label="Senha" variant="standard" />
-        </div>
+          		<div
+		style={{
+			flex: 1,
+			display: "flex",
+			flexDirection: "column",
+			justifyContent: "space-evenly",
+			alignItems: "center",
+		}}
+		>
+			<div style={{display:"flex",alignItems:"center"}}>
+				<AccountCircleIcon style={{marginRight:10,fontSize:40}} color="success"/>
+
+				<CustomInput placeholder="Login"/>
+			</div>
+			<div style={{display:"flex",alignItems:"center"}}>
+				<VpnKeyIcon style={{marginRight:10,fontSize:40}} color="success"/>
+
+				<CustomInput placeholder="Senha"/>
+			</div>
+		</div>
+  </div>
         <div
           className="inputs-form"
 	  >
-		  <CustomButton/>
-        </div>
-      </Paper>
-    </Box>
+		  <CustomButton onClick={()=>{
+			  onLogin();
+			  history("/destilacao",{replace:true})
+		  }} text="Entrar"/>
+  </div>
+  <div style={{
+	  flex:0.5,
+	  maxWidth:400,
+	  display:"flex",
+	  justifyContent:"center",
+	  alignItems:"center",
+	  flexDirection:"row"
+  }}>
+	  <img alt="hills logo" style={{
+		  width:"20%",
+		  height:"100%"
+	  }} src={HillsLogo}/>
+	  <b style={{color:"white"}}>Hills Technologies</b>
+  </div>
+</Box>
   );
 }
