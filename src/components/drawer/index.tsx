@@ -21,6 +21,7 @@ import ArrowBack from "@mui/icons-material/ArrowBack";
 import { ButtonBase } from "@mui/material";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import "./styles.css"
+import Footer from "../Footer";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -89,7 +90,7 @@ export default function PersistentDrawerLeft(
   const location = useLocation();
   const isChart = location.pathname.includes("/chart");
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex",minHeight:"100vh" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
 	      <Toolbar style={{backgroundColor:"black"}}>
@@ -184,10 +185,14 @@ export default function PersistentDrawerLeft(
           ))}
         </List>
       </Drawer>
-      <Main open={open}>
+      <Main sx={{
+	      display:"flex",
+	      flexDirection:"column"
+      }} open={open}>
         <DrawerHeader />
         {props.children}
       </Main>
+
     </Box>
   );
 }

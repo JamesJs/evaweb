@@ -1,7 +1,8 @@
 import Axios from "axios"
-export default async function getData(){
+import { URL } from "../env";
+export default async function getData(id){
 	const _token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWMiOiJzZWlsYSIsInNlcmlhbCI6InNlaWxhIiwiaWF0IjoxNjQ4ODMwOTM1fQ.ZLKZ8eEXMgAH987MzG7fWS6nN3Gdj9eHMaNhf4i_enU"
-	const _url = 'http://18.228.190.235:3000/destilacao/46/dadosDestilacao'
+	const _url = URL+'/destilacao/'+id+'/dadosDestilacao'
 	var axiosHeaders = { 'Content-Type' : 'application/json',
 		'Authorization' : 'Bearer ' + _token,
 		'Accept': '*/*' };

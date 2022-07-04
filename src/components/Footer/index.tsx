@@ -3,14 +3,13 @@ import React from "react"
 import LogoHills from "../../assets/hills_logo.png"
 export default function Footer(){
 	return(
-		<Box sx={{
-			width:"100%",
-			height:100,
-			position:"fixed",	
+		<Box style={{
 			display:"flex",
-			bottom:0,
-			alignItems:"center",
-			justifyContent:"center"
+			justifyContent:"center",
+			marginTop:"auto",
+			width:"100%",
+			alignSelf:"flex-end"
+			
 		}}>
 			<img alt="logo hills" src={LogoHills}
 			style={{

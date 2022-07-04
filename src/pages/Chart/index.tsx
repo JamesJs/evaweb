@@ -11,19 +11,23 @@ import "./styles.css";
 import getDados from "../../api/dadosDestilacao"
 export default function Chart() {
 	const [data,setData] = useState<any>([{}])
+	const [dateString,setDateString] = useState<string>('')
 	const dados = useRef<Record<string,any>>({})
 	const [media_temp,setMedia_temp] = useState<string>()
 	const [media_gl,setMedia_gl] = useState<string>()
 	const [media_litros,setMedia_litros] = useState<string>()
 	useEffect(() => {
+		const params = new URLSearchParams(window.location.search);
+		const id = params.get("id");
 		async function getDadosAsync(){
-			dados.current =  await getDados();
+			dados.current =  await getDados(id);
 			console.log(dados.current)
 			setData(dados.current._pontosCabeca);
 			setMedia_gl(dados.current.mediaCabeca.gl);
 			setMedia_temp(dados.current.mediaCabeca.temp);
 			setMedia_litros(dados.current.mediaCabeca.litros)
 		}
+		setDateString(params.get("data")||'');
 		getDadosAsync();
 	}, []);
 	const handlerChangePart = function(part:string){
@@ -59,14 +63,13 @@ export default function Chart() {
 		<Box
 			sx={{
 				display: "flex",
-					height: "100vh",
-					flexDirection: "column",
+				flexDirection: "column",
 			}}
 		>
 			<Box
 				className="title-charts-page"
 			>
-				<h1>Destilação do dia: 26/12/2021</h1>
+				<h1>Destilação do dia: {dateString}</h1>
 			</Box>
 
 			<Box sx={{ display: "flex", marginBottom: 10 }}>
