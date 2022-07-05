@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/site%20/static/css/main.e3d9b0de.css",
+    "main.js": "/site%20/static/js/main.a8fb56cb.js",
+    "static/media/hills_logo.png": "/site%20/static/media/hills_logo.bcbf82728086c42eac1c.png",
+    "static/media/logo_branco.png": "/site%20/static/media/logo_branco.cf94dc97f5f13a5ec8f2.png",
+    "static/media/gota.png": "/site%20/static/media/gota.6b5161ecdffcd15a643b.png",
+    "index.html": "/site%20/index.html",
+    "main.e3d9b0de.css.map": "/site%20/static/css/main.e3d9b0de.css.map",
+    "main.a8fb56cb.js.map": "/site%20/static/js/main.a8fb56cb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e3d9b0de.css",
+    "static/js/main.a8fb56cb.js"
+  ]
+}
