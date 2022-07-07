@@ -1,4 +1,4 @@
-const URL='http://18.228.190.235:3000'
+const URL='https://api.eva-distillation.com'
 export {
 	URL
 }

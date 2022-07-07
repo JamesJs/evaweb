@@ -2,7 +2,7 @@
   "name": "siteeva",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jamesjs.github.io/evaweb",
+  "homepage": "http://hills.eva-distillation.com",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",

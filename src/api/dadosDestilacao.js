@@ -48,9 +48,9 @@ export default async function getData(id){
 	})
 
 	_listaCoracao.forEach((value)=>{
-		media_gl_coracao = media_gl_cabeca + value.gl;
-		media_temp_coracao = media_temp_cabeca + value.temperatura
-		media_litros_coracao = media_litros_cabeca + value.litros
+		media_gl_coracao = media_gl_coracao + value.gl;
+		media_temp_coracao = media_temp_coracao + value.temperatura
+		media_litros_coracao = media_litros_coracao + value.litros
 		_pontosCoracao[_pontosCoracao.length] = {"GL" : value.gl, "Temp" : value.temperatura, "amt" : value.litros, "name" : new Date(value.data).toLocaleTimeString() }
 	})
 
