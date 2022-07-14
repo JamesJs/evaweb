@@ -10,12 +10,15 @@ import {
   Area,
   AreaChart,
 } from "recharts";
-export default function TwoAxial({data}:{data:any}) {
-  return (
+export default function TwoAxial({data,compacto}:{data:Array<any>,compacto:boolean}) {
+console.log(data.length)	
+console.log(compacto)
+return (
     <Box
       className="warp-chart"
       sx={{
-        minWidth:4*1000,
+	      minWidth:"100%",
+	      width:compacto ? "90vw" : 4*data.length,
       }}
      
     >
@@ -75,7 +78,7 @@ export default function TwoAxial({data}:{data:any}) {
                       color: "blue",
                     }}
                   >
-                    Litros: {props.payload && props?.payload[0]?.payload?.amt} L
+                    Litros: {props.payload && props?.payload[0]?.payload?.amt.toFixed(2)} L
                   </h4>
                 </div>
               );

@@ -41,7 +41,8 @@ export default function Login({
 
 		if(resp.status !== 200) throw new Error("Login invalido")
 			console.log(resp.data.access_token)
-			sessionStorage.setItem('__TOKEN',resp.data.access_token);
+		//sessionStorage.setItem('__TOKEN',resp.data.access_token);
+	          sessionStorage.setItem('__TOKEN','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWMiOiJzZWlsYSIsInNlcmlhbCI6InNlaWxhIiwiaWF0IjoxNjQ4ODMwOTM1fQ.ZLKZ8eEXMgAH987MzG7fWS6nN3Gdj9eHMaNhf4i_enU')
 	}
 	return (
 		<Box

@@ -11,10 +11,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function TwoChart({data}:{data:any}) {
-
+export default function TwoChart({data,compacto}:{data:any,compacto:boolean}) {
   return (
-    <Box
+	  <Box
+      
+      sx={{
+	      minWidth:"100%",
+	      width:compacto ? "90vw" : 4*data.length,
+      }}
       className="two-charts-warp"
     >
       <Box
@@ -54,7 +58,7 @@ export default function TwoChart({data}:{data:any}) {
                   </h4>
                   <h4 className="litros-legend"
                   >
-                    Litros: {props.payload && props?.payload[0]?.payload?.amt} L
+                    Litros: {props.payload && props?.payload[0]?.payload?.amt.toFixed(2)} L
                   </h4>
                 </div>
               );

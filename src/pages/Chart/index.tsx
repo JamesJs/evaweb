@@ -8,7 +8,7 @@ import ArrowFoward from "@mui/icons-material/ArrowForward";
 import RadioButton from "../../components/RadioButton";
 import BotoesOp from "../../components/BotoesOp";
 import "./styles.css";
-import getDados from "../../api/dadosDestilacao"
+import {getDados} from "../../api/dadosDestilacao"
 export default function Chart() {
 	const [data,setData] = useState<any>([{}])
 	const [dateString,setDateString] = useState<string>('')
@@ -16,12 +16,12 @@ export default function Chart() {
 	const [media_temp,setMedia_temp] = useState<string>()
 	const [media_gl,setMedia_gl] = useState<string>()
 	const [media_litros,setMedia_litros] = useState<string>()
+	const id = useRef<number|undefined|null>();
 	useEffect(() => {
 		const params = new URLSearchParams(window.location.search);
-		const id = params.get("id");
+		id.current = params.get("id") !== null ? Number(params.get("id")):-1;
 		async function getDadosAsync(){
-			dados.current =  await getDados(id);
-			console.log(dados.current)
+			dados.current =  await getDados(id.current);
 			setData(dados.current._pontosCabeca);
 			setMedia_gl(dados.current.mediaCabeca.gl);
 			setMedia_temp(dados.current.mediaCabeca.temp);
@@ -31,7 +31,6 @@ export default function Chart() {
 		getDadosAsync();
 	}, []);
 	const handlerChangePart = function(part:string){
-		console.log("part:",part)
 		if(part === "cabeca"){
 			setMedia_gl(dados.current.mediaCabeca.gl);
 			setMedia_temp(dados.current.mediaCabeca.temp);
@@ -59,6 +58,8 @@ export default function Chart() {
 
 	}
 	const [checked, setChecked] = React.useState(false);
+
+	const [expandir, setExpandir] = React.useState(false);
 	return (
 		<Box
 			sx={{
@@ -80,12 +81,12 @@ export default function Chart() {
 					<h3>Valor médio do GL:{media_gl} C</h3>
 				</Paper>
 				<Paper sx={{ padding: 5 }}>
-					<h3>Valor médio litros: {media_litros} L</h3>
+					<h3>Litros totais: {media_litros} L</h3>
 				</Paper>
 			</Box>
 
 			<Box className="chart-warp">
-				{checked ? <TwoCharts data={data} /> : <TwoSameArea data={data}/>}
+				{checked ? <TwoCharts compacto={!expandir} data={data} /> : <TwoSameArea compacto={!expandir} data={data}/>}
 			</Box>
 			<Box
 				className="options-warp-chart"
@@ -97,7 +98,7 @@ export default function Chart() {
 				>
 					<RadioButton handlerChange={handlerChangePart} />
 					<div className="options-buttons-chart">
-						<BotoesOp />
+						<BotoesOp data={dateString} id={id.current} />
 					</div>
 				</Box>
 				<Box
@@ -109,6 +110,19 @@ export default function Chart() {
 							setChecked(!checked);
 						}}
 						checked={checked}
+						size="medium"
+					/>
+				</Box>
+
+				<Box
+					className="switch-charts-warp"
+				>
+					<b className="switch-charts-text">Expandir gráfico</b>
+					<Switch
+						onClick={() => {
+							setExpandir(!expandir);
+						}}
+						checked={expandir}
 						size="medium"
 					/>
 				</Box>

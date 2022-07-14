@@ -22,6 +22,6 @@ const getDestilacoes = async function(){
 		_listaDest[_listaDest.length] = {"data" : value.data, "id" : value.id }
 	})
 	
-	return _listaDest;
+	return _listaDest.sort((a,b)=>b.id-a.id);
 }  
 export default getDestilacoes

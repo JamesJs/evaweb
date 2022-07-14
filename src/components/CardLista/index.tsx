@@ -11,7 +11,7 @@ export default function CardLista(props: PropsWithChildren<any>) {
         width: "100%",
       }}
     >
-      <ListItem alignItems="flex-start">
+      <ListItem  alignItems="flex-start">
         <ListItemAvatar style={{display:"flex",alignItems:"center"}}>
 		<img alt="gota" src={Gota} style={{
 			width:40
@@ -21,7 +21,8 @@ export default function CardLista(props: PropsWithChildren<any>) {
         <ListItemText
           primary={props.data}
           secondary={
-            <React.Fragment>
+	<React.Fragment>
+
               <Typography
                 sx={{ display: "inline" }}
                 component="span"
@@ -33,7 +34,7 @@ export default function CardLista(props: PropsWithChildren<any>) {
               {props?.descricao && props.descricao}
             </React.Fragment>
           }
-        />
+	  />
       </ListItem>
     </ButtonBase>
   );
