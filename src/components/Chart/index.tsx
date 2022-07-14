@@ -35,9 +35,10 @@ return (
             bottom: 0,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
+
           <XAxis dataKey="name" />
           <YAxis />
+          <CartesianGrid strokeDasharray="3 3" />
           <Tooltip
             cursor={false}
             payload={[
@@ -88,7 +89,6 @@ return (
             isAnimationActive={false}
             type="monotone"
             dataKey="GL"
-            stackId="1"
             stroke="#82ca9d"
             fill="#82ca9d"
           />
@@ -96,7 +96,6 @@ return (
             isAnimationActive={false}
             type="monotone"
             dataKey="Temp"
-            stackId="1"
             stroke="#8884d8"
             fill="#8884d8"
           />
