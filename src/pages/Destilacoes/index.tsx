@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import "./styles.css";
 import { deletaDestilacao } from "../../api/dadosDestilacao";
 export default function Destilacao() {
+	console.log(new Date().getTimezoneOffset())
 	const [destilacoes,setDestilacoes] = useState<Array<{
 		id:number,
 		data:string
@@ -27,17 +28,22 @@ export default function Destilacao() {
 				<div>
 					<Link
 					className="destilation-link"
-					to={"/chart?id="+destilacao.id+"&data="+(new Date(destilacao.data)).toLocaleString("pt-Br")}
+					to={"/chart?id="+destilacao.id+"&data="+(new Date(destilacao.data)).toLocaleString("pt-BR",{timeZone:"UTC"})}
 					>
 						<CardLista
 						key={destilacao.id}
-						data={(new Date(destilacao.data)).toLocaleString("pt-Br")}
+						data={(new Date(destilacao.data)).toLocaleString("pt-BR",{timeZone:"UTC"})}
 						nome={"Destilação: "+destilacao.id}
 						/>
 					</Link>
 				</div>
 				<div>
-					<DeleteIcon onClick={async ()=> await deletaDestilacao(destilacao.id)}/>
+					<DeleteIcon onClick={async ()=> {
+						await deletaDestilacao(destilacao.id)
+						const destilacoes = await getDestilacoes();
+						setDestilacoes(destilacoes);
+					}
+					}/>
 				</div>
 			</div>
 

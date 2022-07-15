@@ -10,7 +10,7 @@ async function deletaDestilacao(id){
 	var axiosHeaders = { 'Content-Type' : 'application/json',
 		'Authorization' : 'Bearer ' + _token,
 		'Accept': '*/*' };
-	const response = await Axios.delete(_url,axiosHeaders);
+	const response = await Axios.delete(_url,{headers:axiosHeaders});
 	if(response.status !== 200) throw new Error(response.data);
 	
 
@@ -59,38 +59,39 @@ async function getDados(id){
 	_listaCabeca.forEach((value)=>{
 		media_gl_cabeca = media_gl_cabeca + value.gl;
 		media_temp_cabeca = media_temp_cabeca + value.temperatura
-		_pontosCabeca[_pontosCabeca.length] = {"GL" : value.gl, "Temp" : value.temperatura, "amt" : value.litros, "name" : new Date(value.data).toLocaleTimeString("pt-Br",{timeStyle:"short"}) }
+		_pontosCabeca[_pontosCabeca.length] = {"GL" : value.gl, "Temp" : value.temperatura, "amt" : value.litros, "name" : new Date(value.data).toLocaleTimeString("pt-Br",{timeStyle:"short",timeZone:"UTC"}) }
 	})
 
 	_listaCoracao.forEach((value)=>{
 		media_gl_coracao = media_gl_coracao + value.gl;
 		media_temp_coracao = media_temp_coracao + value.temperatura
-		_pontosCoracao[_pontosCoracao.length] = {"GL" : value.gl, "Temp" : value.temperatura, "amt" : value.litros, "name" : new Date(value.data).toLocaleTimeString("pt-Br",{timeStyle:"short"}) }
+		_pontosCoracao[_pontosCoracao.length] = {"GL" : value.gl, "Temp" : value.temperatura, "amt" : value.litros, "name" : new Date(value.data).toLocaleTimeString("pt-Br",{timeStyle:"short",timeZone:"UTC"}) }
 	})
 
 	_listaCauda.forEach((value)=>{
 		media_gl_cauda = media_gl_cauda + value.gl;
 		media_temp_cauda = media_temp_cauda + value.temperatura
-		_pontosCauda[_pontosCauda.length] = {"GL" : value.gl, "Temp" : value.temperatura, "amt" : value.litros, "name" : new Date(value.data).toLocaleTimeString("pt-Br",{timeStyle:"short"}) }
+		_pontosCauda[_pontosCauda.length] = {"GL" : value.gl, "Temp" : value.temperatura, "amt" : value.litros, "name" : new Date(value.data).toLocaleTimeString("pt-Br",{timeStyle:"short",timeZone:"UTC"}) }
 	})
 
 
-
-
+	let sumLitros = 0
+	if(_pontosCoracao.length > 0) sumLitros = sumLitros + _pontosCoracao[_pontosCoracao.length - 1]["atm"]
+	if(_pontosCabeca.length > 0) sumLitros = sumLitros + _pontosCabeca[_pontosCabeca.length - 1]["atm"]
+	if(_pontosCauda.length > 0) sumLitros = sumLitros + _pontosCauda[_pontosCauda.length - 1]["atm"]
 
 	return {
 		mediaTodos:{
-			temp:((media_temp_coracao+media_temp_cauda+media_temp_cabeca)/(_pontosCoracao.length+_pontosCauda.length+_pontosCabeca.length) || 0).toFixed(2), gl:((media_gl_coracao+media_gl_cauda+media_gl_cabeca)/(_pontosCauda.length+_pontosCabeca.length+_pontosCoracao.length) || 0).toFixed(2), litros:(_pontosCabeca[_pontosCabeca.length-1]["amt"]+_pontosCoracao[_pontosCoracao.length-1]["amt"]+_pontosCauda[_pontosCauda.length-1]["amt"]).toFixed(2)
-		},
+			temp:((media_temp_coracao+media_temp_cauda+media_temp_cabeca)/(_pontosCoracao.length+_pontosCauda.length+_pontosCabeca.length) || 0).toFixed(2), gl:((media_gl_coracao+media_gl_cauda+media_gl_cabeca)/(_pontosCauda.length+_pontosCabeca.length+_pontosCoracao.length) || 0).toFixed(2), litros:sumLitros},
 		mediaCabeca:{
-			temp:((media_temp_cabeca/_pontosCabeca.length) || 0).toFixed(2), gl:((media_gl_cabeca/_pontosCabeca.length) || 0).toFixed(2),litros:_pontosCabeca[_pontosCabeca.length - 1]["amt"].toFixed(2)
+			temp:((media_temp_cabeca/_pontosCabeca.length) || 0).toFixed(2), gl:((media_gl_cabeca/_pontosCabeca.length) || 0).toFixed(2),litros:(_pontosCabeca.length > 0 ? _pontosCabeca[_pontosCabeca.length - 1]["amt"]: 0).toFixed(2)
 		},
 		mediaCauda:{
-		   temp:((media_temp_cauda/_pontosCauda.length) || 0).toFixed(2), gl:((media_gl_cauda/_pontosCauda.length) || 0).toFixed(2)      ,litros:_pontosCauda[_pontosCauda.length - 1]["amt"].toFixed(2)
+			temp:((media_temp_cauda/_pontosCauda.length) || 0).toFixed(2), gl:((media_gl_cauda/_pontosCauda.length) || 0).toFixed(2)      ,litros:(_pontosCauda.length > 0 ? _pontosCauda[_pontosCauda.length - 1]["amt"] : 0).toFixed(2)
 		},
 		mediaCoracao:{
 
-		   temp:((media_temp_coracao/_pontosCoracao.length) || 0).toFixed(2), gl:((media_gl_coracao/_pontosCoracao.length) || 0).toFixed(2),litros:_pontosCoracao[_pontosCoracao.length-1]["amt"].toFixed(2)
+			temp:((media_temp_coracao/_pontosCoracao.length) || 0).toFixed(2), gl:((media_gl_coracao/_pontosCoracao.length) || 0).toFixed(2),litros:(_pontosCoracao.length > 0 ? _pontosCoracao[_pontosCoracao.length-1]["amt"] : 0).toFixed(2)
 		},
 		_pontosCabeca,
 		_pontosCoracao,

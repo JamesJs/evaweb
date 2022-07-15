@@ -28,7 +28,11 @@ export default async function baixaCsv(id){
 			}
 			//console.log(dados[dados.length-1].id)
 
-			dados.forEach(function(row) {
+			//console.log(csv);
+
+	})
+
+	dados.forEach(function(row) {
 				csv += row.data;
 				csv += ','+ row.parte;
 				csv += ','+ row.gl;
@@ -36,9 +40,6 @@ export default async function baixaCsv(id){
 				csv += ','+ row.litros;
 				csv += '\n';
 			});
-			//console.log(csv);
-
-	})
 	
 	let blob = new Blob([csv],{type:'text/plain'})	
 	return blob;
