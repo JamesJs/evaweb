@@ -1,3 +1,4 @@
+//
 import {URL} from '../../env'
 import React, { useState } from "react";
 import { Box } from "@mui/system";
@@ -74,14 +75,14 @@ export default function Login({
 			}}
 			>
 				<div style={{display:"flex",alignItems:"center"}}>
-					<AccountCircleIcon style={{marginRight:10,fontSize:40}} color="success"/>
+					<AccountCircleIcon style={{marginRight:10,fontSize:40,color:"white"}}/>
 
-					<CustomInput onChange={handlerUsuario} placeholder="Login"/>
+					<input onChange={handlerUsuario} placeholder="Login" style={{padding:"15px",marginRight:20,fontSize:15,color:"white",backgroundColor:"black",border: "1px solid white",borderRadius:"3px"}}/>
 				</div>
 				<div style={{display:"flex",alignItems:"center"}}>
-					<VpnKeyIcon style={{marginRight:10,fontSize:40}} color="success"/>
+					<VpnKeyIcon style={{marginRight:10,fontSize:40,color:"white"}}/>
 
-					<CustomInput onChange={handlerSenha} placeholder="Senha"/>
+					<input onChange={handlerSenha} placeholder="Senha" type="password" style={{padding:"15px",marginRight:20,fontSize:15,color:"white",backgroundColor:"black",border: "1px solid white",borderRadius:"3px"}}/>
 				</div>
 			</div>
 		</div>
@@ -109,7 +110,7 @@ export default function Login({
 		flexDirection:"row"
 	}}>
 		<img alt="hills logo" style={{
-			width:"20%",
+			width:"35%",
 			height:"100%"
 		}} src={HillsLogo}/>
 	<b style={{color:"white"}}>Hills Technologies</b>

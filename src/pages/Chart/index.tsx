@@ -75,10 +75,10 @@ export default function Chart() {
 
 			<Box sx={{ display: "flex", marginBottom: 10 }}>
 				<Paper sx={{ marginRight: 10, padding: 5 }}>
-					<h3>Valor médio da temperatura: {media_temp} C</h3>
+					<h3>Valor médio da temperatura: {media_temp} ºC</h3>
 				</Paper>
 				<Paper sx={{ padding: 5, marginRight: 10 }}>
-					<h3>Valor médio do GL:{media_gl} C</h3>
+					<h3>Valor médio do ºGL:{media_gl}</h3>
 				</Paper>
 				<Paper sx={{ padding: 5 }}>
 					<h3>Litros totais: {media_litros} L</h3>
