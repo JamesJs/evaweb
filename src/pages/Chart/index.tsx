@@ -16,6 +16,7 @@ export default function Chart() {
 	const [media_temp,setMedia_temp] = useState<string>()
 	const [media_gl,setMedia_gl] = useState<string>()
 	const [media_litros,setMedia_litros] = useState<string>()
+	const [tempo,setTempo] = useState<number>(0)
 	const id = useRef<number|undefined|null>();
 	useEffect(() => {
 		const params = new URLSearchParams(window.location.search);
@@ -25,7 +26,8 @@ export default function Chart() {
 			setData(dados.current._pontosCabeca);
 			setMedia_gl(dados.current.mediaCabeca.gl);
 			setMedia_temp(dados.current.mediaCabeca.temp);
-			setMedia_litros(dados.current.mediaCabeca.litros)
+			setMedia_litros(dados.current.mediaCabeca.litros);
+			setTempo(dados.current.mediaCabeca.tempo);
 		}
 		setDateString(params.get("data")||'');
 		getDadosAsync();
@@ -36,14 +38,17 @@ export default function Chart() {
 			setMedia_temp(dados.current.mediaCabeca.temp);
 			setMedia_litros(dados.current.mediaCabeca.litros)
 			setData(dados.current._pontosCabeca)
+			setTempo(dados.current.mediaCabeca.tempo);
 		}else if(part === "coracao"){
 
 			setMedia_gl(dados.current.mediaCoracao.gl);
 			setMedia_temp(dados.current.mediaCoracao.temp);
 			setMedia_litros(dados.current.mediaCoracao.litros)
 			setData(dados.current._pontosCoracao)
+			setTempo(dados.current.mediaCoracao.tempo);
 		}else if(part === "cauda"){
-
+			
+			setTempo(dados.current.mediaCauda.tempo);
 			setMedia_gl(dados.current.mediaCauda.gl);
 			setMedia_temp(dados.current.mediaCauda.temp);
 			setMedia_litros(dados.current.mediaCauda.litros)
@@ -52,6 +57,8 @@ export default function Chart() {
 			setMedia_gl(dados.current.mediaTodos.gl);
 			setMedia_temp(dados.current.mediaTodos.temp);
 			setMedia_litros(dados.current.mediaTodos.litros)
+
+			setTempo(dados.current.mediaTodos.tempo);
 
 			setData([...dados.current._pontosCabeca,...dados.current._pontosCauda,...dados.current._pontosCoracao])
 		}
@@ -73,16 +80,23 @@ export default function Chart() {
 				<h1>Destilação do dia: {dateString}</h1>
 			</Box>
 
-			<Box sx={{ display: "flex", marginBottom: 10 }}>
-				<Paper sx={{ marginRight: 10, padding: 5 }}>
-					<h3>Valor médio da temperatura: {media_temp} ºC</h3>
-				</Paper>
-				<Paper sx={{ padding: 5, marginRight: 10 }}>
-					<h3>Valor médio do ºGL:{media_gl}</h3>
-				</Paper>
-				<Paper sx={{ padding: 5 }}>
-					<h3>Litros totais: {media_litros} L</h3>
-				</Paper>
+			<Box sx={{maxWidth:"100vw" ,display: "flex",flexDirection:"column", marginBottom: 10 }}>
+				<Box sx={{display:"flex",marginBottom:10,justifyContent:"space-between"}}>
+					<Paper sx={{ marginRight:0, padding: 5 }}>
+						<h3>Valor médio da temperatura: {media_temp} ºC</h3>
+					</Paper>
+					<Paper sx={{ padding: 5, marginRight: 0 }}>
+						<h3>Valor médio do ºGL:{media_gl}</h3>
+					</Paper>
+					<Paper sx={{ padding: 5 }}>
+						<h3>Litros totais: {media_litros} L</h3>
+					</Paper>
+					<Paper sx={{ padding: 5 }}>
+							<h3>Tempo de destilação: {(+tempo !== -Infinity && +tempo !== Infinity && !isNaN(tempo)) ? Math.floor(tempo) : 0}:{(+tempo !== -Infinity && +tempo !== Infinity && !isNaN(tempo)) ? Math.round((tempo-Math.floor(tempo))*60) : 0}h</h3> 
+					</Paper>
+
+				</Box>
+
 			</Box>
 
 			<Box className="chart-warp">
