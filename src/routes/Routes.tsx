@@ -10,6 +10,7 @@ import Chart from "../pages/Chart";
 import Login from "../pages/Login";
 import Destilacao from "../pages/Destilacoes";
 import Footer from "../components/Footer";
+import Configuracoes from "../pages/Configuracoes";
 export default function RoutesComponent(){
     const [login, setLogin] = useState(sessionStorage.getItem("__TOKEN") !==null);
     async function changeLogin() {
@@ -38,6 +39,7 @@ export default function RoutesComponent(){
 		      */}
               <Route path="/destilacao" element={<Destilacao />} />
 	      <Route path="/chart" element={<Chart />} />
+	      <Route path="/configuracoes" element={<Configuracoes/>}/>
 
       </Routes>
 

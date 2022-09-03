@@ -19,6 +19,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Logout from "@mui/icons-material/Logout";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import { ButtonBase } from "@mui/material";
+import ConstructionOutlinedIcon from '@mui/icons-material/ConstructionOutlined';
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import "./styles.css"
 import Footer from "../Footer";
@@ -158,27 +159,31 @@ export default function PersistentDrawerLeft(
         <List>
 	{
 
-		["Destilações", "Sair"].map((text, index) => (
+		["Destilações","Configurações","Sair"].map((text, index) => (
             <ListItem
-              onClick={
-                index === 1
+	    onClick={
+		 index === 0
+                  ? () => {
+                      navigation("/destilacao");
+		  } :
+		 index === 1
+		  ? () => {
+		      navigation("/configuracoes")
+
+		  } :
+                index === 2
                   ? () => {
                       props.onExit && props.onExit();
                       navigation("/login");
-                    }
-                  : index === 0
-                  ? () => {
-                      navigation("/destilacao");
-                    }
-			    : ()=>{
-				console.log("home aqui")
-			    } 
+                    }: ()=>{
+			    console.log("home aqui")
+		    } 
 	      }
               key={text}
               disablePadding
             >
               <ListItemButton>
-                <ListItemIcon>{index === 2 ? <Logout /> : <></>}</ListItemIcon>
+		      <ListItemIcon>{index === 2 ? <Logout /> : index === 1 ? <ConstructionOutlinedIcon /> :<></>}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
